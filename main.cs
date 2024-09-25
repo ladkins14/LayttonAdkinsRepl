@@ -8,35 +8,37 @@ class Program {
   
    public static void Main (string[] args) {
 
-   Console.WriteLine("Please Enter Wind Speed: ");
-   // The .Split splits the users input from including both the value and the unit so the program can use the value
-   var inputWindSpeed = Console.ReadLine().Split();
-   // This line identifies the number part of the input
-   string input = string.Concat( inputWindSpeed.Where (Char.IsDigit));
-   // This line turns the input from a string into an integer/decimal
-   decimal outputInfo = decimal.Parse(input);
+  int enteredNumber;
 
-   if (outputInfo >= 157) {
-    Console.WriteLine("Category Five Hurricane");
+  int sum = 0;
+
+  int divisionResult;
+
+   Console.Write("Please Enter A Number: ");
+
+   enteredNumber = int.Parse(Console.ReadLine());
+
+   divisionResult = enteredNumber;
+
+   for (int i = 1; i < enteredNumber; i++) {
+
+    if (enteredNumber % i == 0) {
+
+      sum = sum + i;
+
+    }
    }
 
-   else if (outputInfo >= 130) {
-    Console.WriteLine("Category Four Hurricane");
+   if (sum == divisionResult) {
+
+    Console.WriteLine("Perfect Number");
+
    }
 
-   else if (outputInfo >= 111) {
-    Console.WriteLine("Category Three Hurricane");
-   }
-
-   else if (outputInfo >= 96) {
-    Console.WriteLine("Category Two Hurricane");
-   }
-
-   else if (outputInfo >= 74) {
-    Console.WriteLine("Category One Hurricane");
-   }
    else {
-    Console.WriteLine("Not a Hurricane");
+
+    Console.WriteLine("Not A Perfect Number");
+
    }
 
  }
