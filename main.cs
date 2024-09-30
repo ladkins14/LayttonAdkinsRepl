@@ -1,45 +1,80 @@
 using System;
-using System.Data;
-using System.Linq;
-using System.Windows.Markup;
-using System.Xml.Schema;
-
 class Program {
-  
    public static void Main (string[] args) {
 
-  int enteredNumber;
+    Char initial;
+    string inputInitial;
+    double dSaleAmount = 0;
+    double eSaleAmount = 0;
+    double fSaleAmount = 0;
+    double totalSaleAmount = 0;
+    Char highestSale = 'z';
 
-  int sum = 0;
+    while (true) {
+      Console.Write("Please Enter Salesperson Initial or Z To Quit: ");
 
-  int divisionResult;
+      inputInitial = Console.ReadLine();
+      //Next Line Converts user input into a character data type
+      initial = Convert.ToChar(inputInitial);
 
-   Console.Write("Please Enter A Number: ");
+      //This if statement displays an error message if the initial is not recognized
+      if (Char.ToUpper(initial) != 'D' && Char.ToUpper(initial) != 'E' && Char.ToUpper(initial) != 'F' && Char.ToUpper(initial) != 'Z') {
+        Console.WriteLine("Error, invalid salesperson selected, please try again");
 
-   enteredNumber = int.Parse(Console.ReadLine());
+        inputInitial = Console.ReadLine();
+        initial = Convert.ToChar(inputInitial);
+      }
 
-   divisionResult = enteredNumber;
+      //The next three if statements determine each salespersons sales based on the initial entered and user input
+        if (Char.ToUpper(initial) == 'D') {
 
-   for (int i = 1; i < enteredNumber; i++) {
+          Console.WriteLine("Enter Sale Amount: ");
 
-    if (enteredNumber % i == 0) {
+          dSaleAmount = double.Parse(Console.ReadLine());
 
-      sum = sum + i;
+          totalSaleAmount = totalSaleAmount + dSaleAmount;
+        }
 
+          if (Char.ToUpper(initial) == 'E') {
+
+            Console.WriteLine("Enter Sale Amount: ");
+
+            eSaleAmount = double.Parse(Console.ReadLine());
+
+            totalSaleAmount = totalSaleAmount + eSaleAmount;
+          }
+
+           if (Char.ToUpper(initial) == 'F') {
+
+            Console.WriteLine("Enter Sale Amount: ");
+
+            fSaleAmount = double.Parse(Console.ReadLine());
+
+            totalSaleAmount = totalSaleAmount + fSaleAmount;
+           }
+
+            //These three if statements determine which salesperson made the most
+            if (dSaleAmount > eSaleAmount && dSaleAmount > fSaleAmount) {
+              highestSale = 'D';
+            }
+
+              if (eSaleAmount > dSaleAmount && eSaleAmount > fSaleAmount){
+                  highestSale = 'E';
+              }
+
+                if (fSaleAmount > dSaleAmount && fSaleAmount > eSaleAmount){
+                    highestSale = 'F';
+                }
+
+                  //This if statement is the exit condition and displays the total sales and the top seller
+                  if (Char.ToUpper(initial) == 'Z') {
+
+                    Console.WriteLine("Grand Total: {0}", totalSaleAmount);
+                    Console.WriteLine("Highest Sale: {0}", highestSale);
+                    break;
+                  }
+             
     }
-   }
-
-   if (sum == divisionResult) {
-
-    Console.WriteLine("Perfect Number");
-
-   }
-
-   else {
-
-    Console.WriteLine("Not A Perfect Number");
-
-   }
 
  }
 
