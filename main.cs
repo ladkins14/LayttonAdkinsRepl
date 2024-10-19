@@ -1,97 +1,96 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 class Program {
    public static void Main (string[] args) {
 
-    string inputInitial;
-    double dSaleAmount = 0;
-    double eSaleAmount = 0;
-    double fSaleAmount = 0;
-    double totalSaleAmount;
-    Char highestSale = 'z';
+   string inputNumber;
+   int rangeOfArray = 5;
+   double averageRangeOfArray = 5.0;
+   int totalOfTemps = 0;
+   double averageTemp = 0;
+   int ascendingPoints = 0;
+   int descendingPoints = 0;
 
-    string[] salesPersonNames = { "Danielle", "Edward", "Francis" };
-    string[] allowedInitials = {"D", "E", "F", "d", "e", "f", "Z", "z" };
+   // This line initializes an array with a variable for the range to use later
+   int[] tempArray = new int[rangeOfArray];
 
-    //This array will hold the values of the sales each salesperson made, going from Danielle, to Edward, to Francis
-    double[] accumSales = new double[3];
-    
-    while (true) {
+   // This loop takes user inputs, checks if they're valid, and assigns them to the array
+   for(int i = 0; i < rangeOfArray; i++) {
 
-      Console.Write("Please Enter Salesperson Initial or Z To Quit: ");
-      inputInitial = Console.ReadLine();
+    do {
 
-      //This if statement displays an error message if the input is not one of the allowed initials or the exit case
-      if (!allowedInitials.Contains(inputInitial)) {
+      Console.Write("Please Input Temperature {0}: ", i + 1);
+      inputNumber = Console.ReadLine();
 
-        Console.WriteLine("Error, invalid salesperson selected, please try again");
-        inputInitial = Console.ReadLine();
+      if (Convert.ToInt16 (inputNumber) < -30 || Convert.ToInt16 (inputNumber) > 130 ) {
+
+        Console.WriteLine("Temperature {0} is invalid, Please enter a valid temperature between -30 And 130", inputNumber);
+        inputNumber = Console.ReadLine();
 
       }
 
-        //This if statement runs if the entered initial is equal to "D" or "d" in the array
-        if (inputInitial == allowedInitials[0] || inputInitial == allowedInitials[3]) {
+    } while (!int.TryParse(inputNumber, out tempArray[i]));
+   }
 
-          Console.Write("Enter Sale Amount: ");
+   // This loop determines if the elements in the array are decreasing or increasing and adds to a counter for each
+   for(int i = 1; i < rangeOfArray; i++) {
 
-          dSaleAmount = double.Parse(Console.ReadLine());
+    if (tempArray[i - 1] < tempArray[i]) {
 
-          //This statement adds the amount of Danielle's sale to the first element of the accumSales array
-          accumSales[0] += dSaleAmount;
+      ascendingPoints++;
 
-        }
-
-          //This if statement runs if the entered initial is equal to "E" or "e" in the array
-          if (inputInitial == allowedInitials[1] || inputInitial == allowedInitials[4]) {
-
-            Console.Write("Enter Sale Amount: ");
-
-          eSaleAmount = double.Parse(Console.ReadLine());
-
-          //This statement adds the amount of Edward's sale to the second element of the accumSales array
-          accumSales[1] += eSaleAmount;
-
-          }
-
-            //This if statement runs if the entered initial is equal to "F" or "f" in the array
-            if (inputInitial == allowedInitials[2] || inputInitial == allowedInitials[5]) {
-
-              Console.Write("Enter Sale Amount: ");
-
-              fSaleAmount = double.Parse(Console.ReadLine());
-
-              //This statement adds the amount of Francis' sale to the third element of the accumSales array
-              accumSales[2] += fSaleAmount;
-            }
-
-              //These three if statements determine which salesperson had the highest sale
-              if (dSaleAmount > eSaleAmount && dSaleAmount > fSaleAmount) {
-              highestSale = 'D';
-            }
-
-                if (eSaleAmount > dSaleAmount && eSaleAmount > fSaleAmount){
-                  highestSale = 'E';
-              }
-
-                  if (fSaleAmount > dSaleAmount && fSaleAmount > eSaleAmount){
-                    highestSale = 'F';
-                }
-
-                    //This if statement is the exit condition and calculates the total sales and displays it and the top seller
-                    if (inputInitial == allowedInitials[6] || inputInitial == allowedInitials[7]) {
-
-                      totalSaleAmount = accumSales[0] + accumSales[1] + accumSales[2];
-                      Console.WriteLine("Grand Total: {0}", totalSaleAmount);
-                      Console.WriteLine("Highest Sale: {0}", highestSale);
-                      break;
-                    }
-        
-      }
-             
     }
 
+    if (tempArray[i - 1] > tempArray[i]) {
+
+      descendingPoints++;
+
+    }
+   }
+
+   // This set of if statements check the counters and if one reaches 4 they display text for which one did, or displays text if neither did
+   if (ascendingPoints == 4) {
+
+    Console.WriteLine("Getting Warmer");
+
+   }
+
+   if (descendingPoints == 4) {
+
+    Console.WriteLine("Getting Cooler");
+
+   }
+
+   if (ascendingPoints != 4 && descendingPoints != 4) {
+
+    Console.WriteLine("It's a mixed bag");
+
+   }
+
+   // This for loop adds the values of each element in the array to a variable
+   for (int i = 0; i < rangeOfArray; ++i) {
+
+    totalOfTemps += tempArray[i];
+
+   }
+
+       Console.WriteLine("5-day Temperature [{0}, {1}, {2}, {3}, {4}]", tempArray[0], tempArray[1], tempArray[2], tempArray[3], tempArray[4]);
+
+       // This calculates the average of the values entered to the array
+       averageTemp = totalOfTemps / averageRangeOfArray; 
+
+       Console.WriteLine("Average Temperature is {0} degrees", averageTemp);
+     
  }
+}
+             
+    
+
+
+ 
 
 
