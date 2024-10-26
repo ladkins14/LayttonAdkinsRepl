@@ -2,9 +2,16 @@ using System;
 
 class Program {
 
-   public static void Main (string[] args) {
+  public static void Main (string[] args) {
 
-   while(true) {
+  Int16 lastYearCont;
+  Int16 thisYearCont;
+  double thisYearRev;
+  double lastYearRev;
+  double ticketCost = 25;
+  bool compSize;
+  
+  while(true) {
 
     Console.WriteLine("************************************");
     Console.WriteLine("*  The stars shine in Greenville.  *");
@@ -15,15 +22,10 @@ class Program {
 
     string selectedOption = Console.ReadLine();
 
-    //This if statementruns if the user selects "1", where it calculates the profits of this and last years comps and determines if this year's is bigger
+    //This if statement runs if the user selects "1", where it calculates the profits of this and last years comps and determines if this year's is bigger
     if (selectedOption == "1") {
 
-      Int16 lastYearCont;
-      Int16 thisYearCont;
-      double thisYearRev;
-      double lastYearRev;
-      double ticketCost = 25;
-      bool compSize;
+    
 
       Console.Write("Number of Last Year's Contestants: ");
       lastYearCont = Int16.Parse(Console.ReadLine());
