@@ -2,30 +2,69 @@ using System;
 
 class Program {
 
-  private const decimal BASE_RATE = 200;
-  private const decimal PER_HOUR = 150;
-   private const decimal PER_MILE = 2;
-
    public static void Main (string[] args) {
 
-   Console.Write("Please Enter The Number Of Hours For Job: ");
-   var inputHours = Console.ReadLine();
-     
-   Console.Write("Please Enter The Number Of Miles: ");
-   var inputMiles = Console.ReadLine();
-     
-   decimal numberOfHours;
-   decimal numberOfMiles;
+   while(true) {
 
-   if (decimal.TryParse(inputHours, out numberOfHours) && decimal.TryParse(inputMiles, out numberOfMiles)) {
+    Console.WriteLine("************************************");
+    Console.WriteLine("*  The stars shine in Greenville.  *");
+    Console.WriteLine("************************************");
+    Console.WriteLine("Please Enter the following number below from the following menu: ");
+    Console.WriteLine("1. CALCULATE Greenville Revenue Year-Over-Year");
+    Console.WriteLine("2. Exit");
 
-     Console.WriteLine("Estimated Total Moving Fee is ${0}", BASE_RATE + (PER_HOUR * numberOfHours) + (PER_MILE * numberOfMiles));
-     }
-     else {
-       Console.WriteLine("Please Input Numbers Only");
+    string selectedOption = Console.ReadLine();
 
-     }
-  
+    //This if statementruns if the user selects "1", where it calculates the profits of this and last years comps and determines if this year's is bigger
+    if (selectedOption == "1") {
+
+      Int16 lastYearCont;
+      Int16 thisYearCont;
+      double thisYearRev;
+      double lastYearRev;
+      double ticketCost = 25;
+      bool compSize;
+
+      Console.Write("Number of Last Year's Contestants: ");
+      lastYearCont = Int16.Parse(Console.ReadLine());
+
+      Console.Write("Number of This Year's Contestants: ");
+      thisYearCont = Int16.Parse(Console.ReadLine());
+
+      Console.WriteLine("Last year's competition had {0} contestants, and this year's has {1} contestants", lastYearCont, thisYearCont);
+
+      thisYearRev = thisYearCont * ticketCost;
+
+      lastYearRev = lastYearCont * ticketCost;
+
+      Console.WriteLine("Revenue expected this year is ${0}", thisYearRev);
+
+      // these if statements determine which competition will be bigger and displays it in a true or false format
+      if (lastYearRev > thisYearRev) {
+
+        compSize = false;
+
+        Console.WriteLine("It is {0} that this year's competition is bigger than last year's.", compSize);
+
+      }
+
+      if (lastYearRev < thisYearRev) {
+
+        compSize = true;
+
+        Console.WriteLine("It is {0} that this year's competition is bigger than last year's.", compSize);
+
+      }
+    }
+    
+    // this if statement runs if the user selects "2", where it displays a goodbye message and closes the program
+    if (selectedOption == "2") {
+
+      Console.WriteLine("Thank you for using the Greenville Revenue App, good-bye!");
+
+      break;
+    }
+   }
 
    }
 
