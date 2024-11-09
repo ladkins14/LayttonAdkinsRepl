@@ -9,10 +9,9 @@ class Program {
   double thisYearRev;
   double lastYearRev;
   double ticketCost = 25;
-  bool compSize;
   
   while(true) {
-
+    Console.WriteLine("");
     Console.WriteLine("************************************");
     Console.WriteLine("*  The stars shine in Greenville.  *");
     Console.WriteLine("************************************");
@@ -39,22 +38,27 @@ class Program {
 
       lastYearRev = lastYearCont * ticketCost;
 
+      double twiceLastYearRev = lastYearRev * 2;
+
       Console.WriteLine("Revenue expected this year is ${0}", thisYearRev);
 
       // these if statements determine which competition will be bigger and displays it in a true or false format
       if (lastYearRev > thisYearRev) {
 
-        compSize = false;
 
-        Console.WriteLine("It is {0} that this year's competition is bigger than last year's.", compSize);
+        Console.WriteLine("A tighter race this year! Come out and cast your vote!");
 
       }
 
-      if (lastYearRev < thisYearRev) {
+      if (lastYearRev < thisYearRev && thisYearRev < twiceLastYearRev) {
 
-        compSize = true;
+        Console.WriteLine("The competition is bigger than ever!");
 
-        Console.WriteLine("It is {0} that this year's competition is bigger than last year's.", compSize);
+      }
+
+      if (lastYearRev < thisYearRev && thisYearRev > twiceLastYearRev) {
+
+        Console.WriteLine("The competition is more than twice as big this year!");
 
       }
     }
