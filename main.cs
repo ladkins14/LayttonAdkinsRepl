@@ -29,8 +29,29 @@ class Program {
       Console.Write("Number of Last Year's Contestants: ");
       lastYearCont = Int16.Parse(Console.ReadLine());
 
+      //This if statement displays an error message if the number of last year contestants entered is not withing the selected range
+      if (lastYearCont < 0 || lastYearCont > 30){
+
+        Console.WriteLine("ERROR: contestant number must be between 0 and 30 (inclusive), please enter a valid number");
+        
+        Console.Write("Number of Last Year's Contestants: ");
+        lastYearCont = Int16.Parse(Console.ReadLine());
+
+      }
+
       Console.Write("Number of This Year's Contestants: ");
       thisYearCont = Int16.Parse(Console.ReadLine());
+
+      //This if statement displays an error message if the number of this year contestants entered is not withing the selected range
+      if (thisYearCont < 0 || thisYearCont > 30){
+
+        Console.WriteLine("ERROR: contestant number must be between 0 and 30 (inclusive), please enter a valid number");
+        
+        Console.Write("Number of This Year's Contestants: ");
+        thisYearCont = Int16.Parse(Console.ReadLine());
+
+      }
+    
 
       Console.WriteLine("Last year's competition had {0} contestants, and this year's has {1} contestants", lastYearCont, thisYearCont);
 
@@ -42,7 +63,7 @@ class Program {
 
       Console.WriteLine("Revenue expected this year is ${0}", thisYearRev);
 
-      // these if statements determine which competition will be bigger and displays it in a true or false format
+      // these if statements determine which competition will be bigger and displays it in one of three messages
       if (lastYearRev > thisYearRev) {
 
 
@@ -50,7 +71,7 @@ class Program {
 
       }
 
-      if (lastYearRev < thisYearRev && thisYearRev < twiceLastYearRev) {
+      if (lastYearRev < thisYearRev && thisYearRev <= twiceLastYearRev) {
 
         Console.WriteLine("The competition is bigger than ever!");
 
